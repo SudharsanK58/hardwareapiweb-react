@@ -2,6 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Select } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
+import { Stack, HStack, VStack } from '@chakra-ui/react'
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+} from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
+
 function App() {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
@@ -29,24 +41,30 @@ function App() {
   return (
     <ChakraProvider>
     <div className="centered-container">
-      <h1 className="centered-heading">
-        Device ID: {deviceId}
+      <h1 className="centered-heading"><Heading>Device ID: {deviceId}</Heading>
       </h1>
       <div className="device-selector">
-        <select
-          className="custom-dropdown"
-          value={deviceId}
-          onChange={(e) => setDeviceId(e.target.value)}
-        >
-          <option value="04:e9:e5:14:90:26">Device 1</option>
-          <option value="04:e9:e5:15:70:ac">Device 2</option>
-          <option value="04:e9:e5:15:70:8b">Device 3</option>
-          {/* Add more options as needed */}
-        </select>
-        <Button colorScheme='blue' className="custom-button" onClick={fetchData}>
-          Get Device Data
-        </Button>
-      </div>
+          <Stack direction={['column', 'row']} spacing="24px">
+            <Select
+              className="custom-dropdown"
+              value={deviceId}
+              width="10%"
+              onChange={(e) => setDeviceId(e.target.value)}
+            >
+              <option value="04:e9:e5:14:90:26">Device 1</option>
+              <option value="04:e9:e5:15:70:ac">Device 2</option>
+              <option value="04:e9:e5:15:70:8b">Device 3</option>
+              {/* Add more options as needed */}
+            </Select>
+            <Button
+              colorScheme="blue"
+              className="custom-button"
+              onClick={fetchData}
+            >
+              Get Device Data
+            </Button>
+          </Stack>
+        </div>
       {error ? (
         <p className="error-message">Error fetching data: {error.message}</p>
       ) : (
