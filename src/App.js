@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
+import { ChakraProvider } from '@chakra-ui/react'
+import { Button, ButtonGroup } from '@chakra-ui/react'
 function App() {
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
@@ -26,6 +27,7 @@ function App() {
   };
 
   return (
+    <ChakraProvider>
     <div className="centered-container">
       <h1 className="centered-heading">
         Device ID: {deviceId}
@@ -41,9 +43,9 @@ function App() {
           <option value="04:e9:e5:15:70:8b">Device 3</option>
           {/* Add more options as needed */}
         </select>
-        <button className="custom-button" onClick={fetchData}>
+        <Button colorScheme='blue' className="custom-button" onClick={fetchData}>
           Get Device Data
-        </button>
+        </Button>
       </div>
       {error ? (
         <p className="error-message">Error fetching data: {error.message}</p>
@@ -55,6 +57,7 @@ function App() {
         </div>
       )}
     </div>
+    </ChakraProvider>
   );
 }
 
