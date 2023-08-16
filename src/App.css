@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+.centered-container {
+  text-align: center;
+}
+
+.centered-heading {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: red;
+}
+
+.data-box {
+  border: 4px solid blue; /* Set border thickness and color */
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.data-list {
+  text-align: left;
+}
+/* Increase the font size for ble box title */
+.blue-box {
+  border: 3px solid blue;
+}
+
+.green-box {
+  border: 3px solid green;
+}
+
+.red-box {
+  border: 3px solid red;
+}
+
+/* Increase the font size for box title */
+.data-box h2 {
+  font-size: 1.8em;
+}
