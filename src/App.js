@@ -80,21 +80,43 @@ function App() {
 }
 
 function DataBox({ title, data, colorClass }) {
+  const [editableData, setEditableData] = useState(data); // Initialize editableData with data
+
+  const handleInputChange = (key, value) => {
+    setEditableData((prevData) => ({
+      ...prevData,
+      [key]: value,
+    }));
+  };
+
   if (!data) {
     return null;
   }
 
   return (
-    <div className={`data-box ${colorClass}`}>
-      <h2>{title}</h2>
-      <div className="data-list">
-        {Object.keys(data).map((key) => (
-          <p key={key}>
-            <strong>{key}:</strong> {data[key].toString()}
-          </p>
-        ))}
+    <ChakraProvider>
+      <div className={`data-box ${colorClass}`}>
+        <h2>{title}</h2>
+        <div className="data-list">
+          {Object.keys(editableData).map((key) => (
+            <div key={key}>
+              <strong>{key}:</strong>
+              {typeof editableData[key] === "string" ? (
+                <Input
+                  placeholder={`Enter ${key}`}
+                  value={editableData[key]}
+                  width="20%"
+                  margin="20px"
+                  onChange={(e) => handleInputChange(key, e.target.value)}
+                />
+              ) : (
+                <p>{editableData[key].toString()}</p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </ChakraProvider>
   );
 }
 
